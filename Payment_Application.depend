@@ -1,13 +1,17 @@
 # depslib dependency file v1.0
-1724154106 source:c:\users\ahmed\desktop\payment_application\main.c
+1724439747 source:c:\users\ahmed\desktop\payment_application\main.c
 	"System/Libraries/standard_libraries.h"
+	"System/Payment_System/Card/card.h"
+	"System/Payment_System/Terminal/terminal.h"
+	"System/Payment_System/Server/server.h"
 
-1724152383 c:\users\ahmed\desktop\payment_application\system\libraries\standard_libraries.h
+1724418237 c:\users\ahmed\desktop\payment_application\system\libraries\standard_libraries.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<stdint.h>
 	<time.h>
+	<ctype.h>
 
 1724154620 source:c:\users\ahmed\desktop\payment_application\system\application\application.c
 	"../Libraries/standard_libraries.h"
@@ -28,4 +32,40 @@
 
 1724154795 c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.h
 	"../../Libraries/standard_libraries.h"
+
+1724156871 source:c:\users\ahmed\desktop\payment_application\system\data_structures\list\list.c
+	"../../Libraries/standard_libraries.h"
+	"list.h"
+
+1724156684 c:\users\ahmed\desktop\payment_application\system\data_structures\list\list.h
+	"../../Libraries/standard_libraries.h"
+
+1724157896 source:c:\users\ahmed\desktop\payment_application\system\data_structures\queue\queue.c
+	"../../Libraries/standard_libraries.h"
+	"queue.h"
+
+1724157878 c:\users\ahmed\desktop\payment_application\system\data_structures\queue\queue.h
+	"../../Libraries/standard_libraries.h"
+
+1724158696 source:c:\users\ahmed\desktop\payment_application\system\data_structures\stack\stack.c
+	"../../Libraries/standard_libraries.h"
+	"stack.h"
+
+1724158668 c:\users\ahmed\desktop\payment_application\system\data_structures\stack\stack.h
+	"../../Libraries/standard_libraries.h"
+
+1724419100 c:\users\ahmed\desktop\payment_application\system\payment_system\card\card.h
+	"../../Libraries/standard_libraries.h"
+
+1724419501 c:\users\ahmed\desktop\payment_application\system\payment_system\terminal\terminal.h
+	"../../Libraries/standard_libraries.h"
+	"../Card/card.h"
+
+1724441083 source:c:\users\ahmed\desktop\payment_application\system\payment_system\card\card.c
+	"../../Libraries/standard_libraries.h"
+	"card.h"
+
+1724439896 source:c:\users\ahmed\desktop\payment_application\system\payment_system\terminal\terminal.c
+	"../../Libraries/standard_libraries.h"
+	"terminal.h"
 

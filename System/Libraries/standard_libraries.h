@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <time.h>
+#include <ctype.h>
 
 
 #endif // STANDARD_LIBRARIES_H_INCLUDED
