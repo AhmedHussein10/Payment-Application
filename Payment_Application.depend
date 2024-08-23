@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1724154106 source:c:\users\ahmed\desktop\payment_application\main.c
+	"System/Libraries/standard_libraries.h"
+
+1724152383 c:\users\ahmed\desktop\payment_application\system\libraries\standard_libraries.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdint.h>
+	<time.h>
+
+1724154620 source:c:\users\ahmed\desktop\payment_application\system\application\application.c
+	"../Libraries/standard_libraries.h"
+	"application.h"
+
+1724085116 c:\users\ahmed\desktop\payment_application\system\application\application.h
+
+1724154212 source:c:\users\ahmed\desktop\payment_application\system\data_bases\file_handling\file_handling.c
+	"../../Libraries/standard_libraries.h"
+	"file_handling.h"
+
+1724154681 c:\users\ahmed\desktop\payment_application\system\data_bases\file_handling\file_handling.h
+	"../../Libraries/standard_libraries.h"
+
+1724154284 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
+	"../../Libraries/standard_libraries.h"
+	"server.h"
+
+1724154795 c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.h
+	"../../Libraries/standard_libraries.h"
+
