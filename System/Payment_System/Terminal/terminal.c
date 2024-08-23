@@ -92,4 +92,29 @@ EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount)
 
 
 
+EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)
+{
+    if (cardData==NULL)
+        return INVALID_CARD;
+    int OddSum=0;
+    int EvenDouble=0;
+    int EvenSum=0;
+    int len=strlen(cardData->primaryAccountNumber);
 
+    for (size_t i=0;i<len;i++)
+    {
+        uint8_t digit =cardData->primaryAccountNumber[i]-48;
+        if (i%2==0)
+        {
+            EvenDouble=digit*2;
+            if (EvenDouble>9)
+                EvenDouble-=9;
+            EvenSum+=EvenDouble;
+        }
+        else
+            OddSum+=digit;
+    }
+    if ((EvenSum+OddSum)%10!=0)
+        return INVALID_CARD;
+    return TERMINAL_OK;
+}
