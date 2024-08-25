@@ -1,10 +1,9 @@
 # depslib dependency file v1.0
-1724502458 source:c:\users\ahmed\desktop\payment_application\main.c
+1724546325 source:c:\users\ahmed\desktop\payment_application\main.c
 	"System/Libraries/standard_libraries.h"
-	"System/Payment_System/Card/card.h"
-	"System/Payment_System/Terminal/terminal.h"
 	"System/Payment_System/Server/server.h"
 	"System/Data_Structures/List/list.h"
+	"System/Data_Bases/File_Handling/file_handling.h"
 
 1724418237 c:\users\ahmed\desktop\payment_application\system\libraries\standard_libraries.h
 	<stdio.h>
@@ -20,27 +19,31 @@
 
 1724085116 c:\users\ahmed\desktop\payment_application\system\application\application.h
 
-1724154212 source:c:\users\ahmed\desktop\payment_application\system\data_bases\file_handling\file_handling.c
+1724546122 source:c:\users\ahmed\desktop\payment_application\system\data_bases\file_handling\file_handling.c
 	"../../Libraries/standard_libraries.h"
 	"file_handling.h"
+	"../../Payment_System/Server/server.h"
+	"../../Data_Structures/List/list.h"
 
-1724154681 c:\users\ahmed\desktop\payment_application\system\data_bases\file_handling\file_handling.h
+1724546160 c:\users\ahmed\desktop\payment_application\system\data_bases\file_handling\file_handling.h
 	"../../Libraries/standard_libraries.h"
+	"../../Payment_System/Server/server.h"
 
-1724154284 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
+1724544482 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
 	"../../Libraries/standard_libraries.h"
 	"server.h"
 
-1724502578 c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.h
+1724544978 c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.h
 	"../../Libraries/standard_libraries.h"
 	"../Card/card.h"
 	"../Terminal/terminal.h"
 
-1724156871 source:c:\users\ahmed\desktop\payment_application\system\data_structures\list\list.c
+1724546306 source:c:\users\ahmed\desktop\payment_application\system\data_structures\list\list.c
 	"../../Libraries/standard_libraries.h"
 	"list.h"
+	"../../Payment_System/Server/server.h"
 
-1724502584 c:\users\ahmed\desktop\payment_application\system\data_structures\list\list.h
+1724546281 c:\users\ahmed\desktop\payment_application\system\data_structures\list\list.h
 	"../../Libraries/standard_libraries.h"
 	"../../Payment_System/Server/server.h"
 

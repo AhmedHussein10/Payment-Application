@@ -1,5 +1,6 @@
 #include "../../Libraries/standard_libraries.h"
 #include "list.h"
+#include "../../Payment_System/Server/server.h"
 
 int create_list (list *pl)
 {
@@ -24,7 +25,7 @@ int is_list_full (list *pl)
     return 0;
 }
 
-int insert_list (int pos,ST_accountsDB_t Account,list *pl)
+int insert_Account (int pos,ST_accountsDB_t Account,list *pl)
 {
     if (pl==NULL)
         return -1;
@@ -51,7 +52,7 @@ int insert_list (int pos,ST_accountsDB_t Account,list *pl)
     return 1;
 }
 
-int delete_list (int pos,ST_accountsDB_t *pAccount,list *pl)
+int delete_Account (int pos,ST_accountsDB_t *pAccount,list *pl)
 {
     if (pl==NULL)
         return -1;
@@ -84,7 +85,7 @@ int list_size (list *pl)
     return pl->size;
 }
 
-int retrieve_list (int pos,ST_accountsDB_t *pAccount,list *pl)
+int retrieve_Account (int pos,ST_accountsDB_t *pAccount,list *pl)
 {
     if (pl==NULL)
         return -1;
@@ -99,7 +100,7 @@ int retrieve_list (int pos,ST_accountsDB_t *pAccount,list *pl)
 
 
 
-int traverse_list (list *pl,void (*pf) (ST_accountsDB_t))
+int traverse_Accounts (list *pl,void (*pf) (ST_accountsDB_t))
 {
     if (pl==NULL)
         return -1;
@@ -130,9 +131,7 @@ int clear_list (list *pl)
 
 void display (ST_accountsDB_t Account)
 {
-    printf ("%f \n",Account.balance);
-    printf ("%d \n",Account.state);
-    printf ("%s \n",Account.primaryAccountNumber);
-    printf ("\n");
+    printf ("%f %s %d\n",Account.balance,Account.primaryAccountNumber,Account.state);
+
 }
 
