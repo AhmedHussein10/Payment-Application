@@ -7,7 +7,7 @@ EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
     if (cardData==NULL)
         return WRONG_NAME;
     uint8_t name[25];
-    //printf ("Enter card holder's name (20:24 alphabetic characters) : ");
+    printf ("Enter card holder's name (20:24 alphabetic characters) : ");
     gets  ((char*)name);
     uint8_t length=strlen((char*)name);
     if (length>24 || length<20)
@@ -31,7 +31,7 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
     if (cardData==NULL)
         return WRONG_EXP_DATE;
     uint8_t date[6];
-    //printf ("Enter card's expiry date (MM/YY) : ");
+    printf ("Enter card's expiry date (MM/YY) : ");
     gets  ((char*)date);
     uint8_t length=strlen((char*)date);
     if  (length!=5                   ||
@@ -59,7 +59,7 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData)
     if (cardData==NULL)
         return WRONG_PAN;
     uint8_t pan[20];
-    //printf ("Enter card's PAN : ");
+    printf ("Enter card's PAN : ");
     gets ((char*)pan);
     uint8_t length=strlen((char*)pan);
     if (length>19 || length<16)

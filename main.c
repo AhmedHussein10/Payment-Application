@@ -2,12 +2,12 @@
 #include "System/Payment_System/Server/server.h"
 #include "System/Data_Structures/List/list.h"
 #include "System/Data_Bases/File_Handling/file_handling.h"
+#include "System/Application/application.h"
 
 
 int main()
 {
-    Read_AccounDB_FromFile ();
-    traverse_Accounts (&Account_DB,display);
+    App_Start();
     /*getCardHolderNameTest();
     getCardExpiryDateTest();
     getCardPANTest();

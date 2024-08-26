@@ -1,4 +1,5 @@
 #include "../../Libraries/standard_libraries.h"
+#include "../../Libraries/platform_type.h"
 #include "list.h"
 #include "../../Payment_System/Server/server.h"
 
@@ -25,14 +26,14 @@ int is_list_full (list *pl)
     return 0;
 }
 
-int insert_Account (int pos,ST_accountsDB_t Account,list *pl)
+int insert_Account (int pos,void *Account,list *pl)
 {
     if (pl==NULL)
         return -1;
     node *pn=(node*) malloc(sizeof(node));
     if (pn==NULL)
         return -1;
-    pn->Account=Account;
+    pn->ptr=Account;
     if (pos==0)
     {
         pn->next=pl->head;
@@ -52,14 +53,14 @@ int insert_Account (int pos,ST_accountsDB_t Account,list *pl)
     return 1;
 }
 
-int delete_Account (int pos,ST_accountsDB_t *pAccount,list *pl)
+int delete_Account (int pos,void *Account,list *pl)
 {
     if (pl==NULL)
         return -1;
     node *pn=pl->head;
     if (pos==0)
     {
-        *pAccount=pn->Account;
+        Account=pn->ptr;
         pl->head=pn->next;
         free (pn);
     }
@@ -70,7 +71,7 @@ int delete_Account (int pos,ST_accountsDB_t *pAccount,list *pl)
             pn=pn->next;
         }
         node *pq=pn->next;
-        *pAccount=pq->Account;
+        Account=pq->ptr;
         pn->next=pq->next;
         free (pq);
     }
@@ -85,29 +86,15 @@ int list_size (list *pl)
     return pl->size;
 }
 
-int retrieve_Account (int pos,ST_accountsDB_t *pAccount,list *pl)
-{
-    if (pl==NULL)
-        return -1;
-    node *pn=pl->head;
-    for (int i=0;i<pos;i++)
-    {
-        pn=pn->next;
-    }
-    *pAccount=pn->Account;
-    return 1;
-}
 
-
-
-int traverse_Accounts (list *pl,void (*pf) (ST_accountsDB_t))
+int traverse_Accounts (list *pl,void (*pf) (void*))
 {
     if (pl==NULL)
         return -1;
     node *pn=pl->head;
     while (pn)
     {
-        (*pf) (pn->Account);
+        (*pf) (pn->ptr);
         pn=pn->next;
     }
     return 1;
@@ -127,11 +114,5 @@ int clear_list (list *pl)
     }
     pl->size=0;
     return 1;
-}
-
-void display (ST_accountsDB_t Account)
-{
-    printf ("%f %s %d\n",Account.balance,Account.primaryAccountNumber,Account.state);
-
 }
 

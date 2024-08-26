@@ -51,6 +51,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="System/Data_Structures/Stack/stack.h" />
+		<Unit filename="System/Libraries/platform_type.h" />
 		<Unit filename="System/Libraries/standard_libraries.h" />
 		<Unit filename="System/Payment_System/Card/card.c">
 			<Option compilerVar="CC" />

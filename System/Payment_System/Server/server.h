@@ -4,6 +4,7 @@
 #include "../../Libraries/standard_libraries.h"
 #include "../Card/card.h"
 #include "../Terminal/terminal.h"
+#include "../../Data_Structures/List/list.h"
 
 
 typedef enum EN_transState_t
@@ -49,23 +50,7 @@ typedef struct ST_accountsDB_t
 
 
 
-typedef struct node
-{
-    ST_accountsDB_t Account;
-    struct node *next;
-
-}node;
-
-typedef struct
-{
-    node *head;
-    uint32_t size;
-
-}list;
-
-list Account_DB;
-
-EN_transState_t recieveTransactionData(ST_transaction_t *transData);
+EN_transState_t recieveTransactionData(ST_transaction_t *transData,list *Account_DB);
 EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accountRefrence);
 EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence);
 EN_serverError_t isAmountAvailable(ST_terminalData_t *termData,ST_accountsDB_t *accountRefrence);

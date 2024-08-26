@@ -59,7 +59,7 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData)
     if (termData==NULL)
         return INVALID_AMOUNT;
     float amount;
-    //printf ("Enter transaction amount : ");
+    printf ("Enter transaction amount : ");
     scanf  ("%f",&amount);
     fflush(stdin);
     if (amount<=0)
