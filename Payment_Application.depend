@@ -14,7 +14,7 @@
 	<time.h>
 	<ctype.h>
 
-1724673062 source:c:\users\ahmed\desktop\payment_application\system\application\application.c
+1724676926 source:c:\users\ahmed\desktop\payment_application\system\application\application.c
 	"../Libraries/standard_libraries.h"
 	"../Libraries/platform_type.h"
 	"application.h"
@@ -37,13 +37,13 @@
 	"../../Data_Structures/List/list.h"
 	"../../Payment_System/Server/server.h"
 
-1724675340 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
+1724693941 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
 	"../../Libraries/standard_libraries.h"
 	"../../Libraries/platform_type.h"
 	"../../Data_Structures/List/list.h"
 	"server.h"
 
-1724642835 c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.h
+1724709243 c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.h
 	"../../Libraries/standard_libraries.h"
 	"../Card/card.h"
 	"../Terminal/terminal.h"
@@ -55,8 +55,9 @@
 	"list.h"
 	"../../Payment_System/Server/server.h"
 
-1724642947 c:\users\ahmed\desktop\payment_application\system\data_structures\list\list.h
+1724709105 c:\users\ahmed\desktop\payment_application\system\data_structures\list\list.h
 	"../../Libraries/standard_libraries.h"
+	"../../Libraries/platform_type.h"
 
 1724157896 source:c:\users\ahmed\desktop\payment_application\system\data_structures\queue\queue.c
 	"../../Libraries/standard_libraries.h"
@@ -72,11 +73,13 @@
 1724158668 c:\users\ahmed\desktop\payment_application\system\data_structures\stack\stack.h
 	"../../Libraries/standard_libraries.h"
 
-1724633304 c:\users\ahmed\desktop\payment_application\system\payment_system\card\card.h
+1724694034 c:\users\ahmed\desktop\payment_application\system\payment_system\card\card.h
 	"../../Libraries/standard_libraries.h"
+	"../../Libraries/platform_type.h"
 
-1724633304 c:\users\ahmed\desktop\payment_application\system\payment_system\terminal\terminal.h
+1724694015 c:\users\ahmed\desktop\payment_application\system\payment_system\terminal\terminal.h
 	"../../Libraries/standard_libraries.h"
+	"../../Libraries/platform_type.h"
 	"../Card/card.h"
 
 1724672943 source:c:\users\ahmed\desktop\payment_application\system\payment_system\card\card.c

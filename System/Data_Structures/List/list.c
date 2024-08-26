@@ -1,7 +1,7 @@
 #include "../../Libraries/standard_libraries.h"
 #include "../../Libraries/platform_type.h"
 #include "list.h"
-#include "../../Payment_System/Server/server.h"
+
 
 int create_list (list *pl)
 {

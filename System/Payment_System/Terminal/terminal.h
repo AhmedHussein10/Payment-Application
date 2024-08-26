@@ -2,6 +2,7 @@
 #define TERMINAL_H_INCLUDED
 
 #include "../../Libraries/standard_libraries.h"
+#include "../../Libraries/platform_type.h"
 #include "../Card/card.h"
 
 typedef struct ST_terminalData_t
