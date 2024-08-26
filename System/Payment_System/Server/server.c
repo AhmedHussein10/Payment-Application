@@ -8,7 +8,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData,list *Account
     if (transData==NULL || Account_DB==NULL)
         return INTERNAL_SERVER_ERROR;
 
-    ST_accountsDB_t *PtrAccount;
+    ST_accountsDB_t *PtrAccount=NULL;
 
     if(isValidAccount(&transData->cardHolderData,PtrAccount,Account_DB) == ACCOUNT_NOT_FOUND)
     {
@@ -33,7 +33,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData,list *Account
 
 EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accountRefrence,list *Account_DB)
 {
-    if (cardData==NULL || accountRefrence==NULL || Account_DB==NULL)
+    if (cardData==NULL || Account_DB==NULL)
         return INTERNAL_SERVER_ERROR;
 
     node *pn=Account_DB->head;
@@ -54,7 +54,11 @@ EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accoun
 }
 EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence)
 {
-
+    if (accountRefrence == NULL)
+        return ACCOUNT_NOT_FOUND;
+    if (accountRefrence->state==BLOCKED)
+        return BLOCKED_ACCOUNT;
+    return SERVER_OK;
 }
 EN_serverError_t isAmountAvailable(ST_terminalData_t *termData,ST_accountsDB_t *accountRefrence)
 {
