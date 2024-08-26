@@ -15,15 +15,17 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData,list *Account
         transData->transState = FRAUD_CARD;
         return FRAUD_CARD;
     }
-    if(isAmountAvailable(&transData->terminalData,PtrAccount) == LOW_BALANCE)
-    {
-        transData->transState = DECLINED_INSUFFECIENT_FUND;
-        return DECLINED_INSUFFECIENT_FUND;
-    }
-    if(isBlockedAccount(PtrAccount) == BLOCKED_ACCOUNT)
+
+    if(isBlockedAccount(PtrAccount) == BLOCKED_ACCOUNT || isBlockedAccount(PtrAccount) == ACCOUNT_NOT_FOUND)
     {
         transData->transState = DECLINED_STOLEN_CARD;
         return DECLINED_STOLEN_CARD ;
+    }
+
+    if(isAmountAvailable(&transData->terminalData,PtrAccount) == LOW_BALANCE || isAmountAvailable(&transData->terminalData,PtrAccount) == ACCOUNT_NOT_FOUND)
+    {
+        transData->transState = DECLINED_INSUFFECIENT_FUND;
+        return DECLINED_INSUFFECIENT_FUND;
     }
 
     PtrAccount->balance -= transData->terminalData.transAmount;
@@ -34,7 +36,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData,list *Account
 EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accountRefrence,list *Account_DB)
 {
     if (cardData==NULL || Account_DB==NULL)
-        return INTERNAL_SERVER_ERROR;
+        return ACCOUNT_NOT_FOUND;
 
     node *pn=Account_DB->head;
 
@@ -62,6 +64,11 @@ EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence)
 }
 EN_serverError_t isAmountAvailable(ST_terminalData_t *termData,ST_accountsDB_t *accountRefrence)
 {
+    if (accountRefrence == NULL || termData == NULL)
+        return ACCOUNT_NOT_FOUND;
+    if (termData->transAmount > accountRefrence->balance)
+        return LOW_BALANCE;
+    return SERVER_OK;
 
 }
 EN_serverError_t saveTransaction(ST_transaction_t *transData)
@@ -72,6 +79,5 @@ void listSavedTransactions(void)
 {
 
 }
-
 
 
