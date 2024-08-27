@@ -1,5 +1,6 @@
 #include "../../Libraries/standard_libraries.h"
 #include "../../Libraries/platform_type.h"
+#include "../../Payment_System/Server/server.h"
 #include "list.h"
 
 
@@ -33,7 +34,7 @@ int insert_Account (int pos,void *Account,list *pl)
     node *pn=(node*) malloc(sizeof(node));
     if (pn==NULL)
         return -1;
-    pn->ptr=Account;
+    pn->ptr=(ST_accountsDB_t*)Account;
     if (pos==0)
     {
         pn->next=pl->head;

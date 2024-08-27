@@ -7,7 +7,11 @@
 
 int main()
 {
-    App_Start();
+    list l;
+    create_list (&l);
+    Read_AccounDB_FromFile (&l);
+    printf ("%d",list_size (&l));
+    //App_Start();
     /*getCardHolderNameTest();
     getCardExpiryDateTest();
     getCardPANTest();

@@ -6,6 +6,7 @@
 
 
 
+
 typedef struct node
 {
     void *ptr;

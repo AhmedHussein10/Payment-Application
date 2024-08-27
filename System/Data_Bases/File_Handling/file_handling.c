@@ -6,35 +6,26 @@
 void Read_AccounDB_FromFile(list *pl)
 {
     FILE *file;
-    file = fopen("C:/Users/Ahmed/Desktop/Payment_Application/System/Data_Bases/Data/AccountsDB.txt", "r");
-    if (file == NULL)
+    file= fopen("C:/Users/Ahmed/Desktop/Payment_Application/System/Data_Bases/Data/AccountsDB.txt", "r");
+    if (!file)
     {
-        printf("Error, File is Not Found\n");
+        printf("Error, File Not Found \n");
         return;
     }
-
-    ST_accountsDB_t *Account;
-    uint8_t i = 0;
-    while (1)
+    ST_accountsDB_t *account;
+    float amount;
+    uint8_t pan[20];
+    char state[8];
+    uint8_t i=0;
+    while (fscanf(file, "%f %s %s", &amount, pan, state) != EOF)
     {
-        Account = (ST_accountsDB_t *)malloc(sizeof(ST_accountsDB_t));
-        if (Account == NULL)
-        {
-            printf("Out of memory\n");
-            fclose(file);
-            return;
-        }
-
-        if (fscanf(file, "%f %19s %d", &Account->balance, Account->primaryAccountNumber, &Account->state) != 3)
-        {
-            free(Account); // Free the last allocation before exiting
-            break;
-        }
-
-        insert_Account(i, Account, pl);
+        account=(ST_accountsDB_t *)malloc(sizeof(ST_accountsDB_t));
+        account->balance = amount;
+        strncpy((char*)account->primaryAccountNumber,(char*) pan, sizeof(account->primaryAccountNumber));
+        account->state = (strcmp(state, "RUNNING") == 0) ? RUNNING : BLOCKED;
+        insert_Account(i,account,pl);
         i++;
     }
-
     fclose(file);
 }
 
@@ -57,3 +48,4 @@ void Update_AccountDB(list *pl)
     }
     fclose(file);
 }
+
