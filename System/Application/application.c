@@ -9,9 +9,9 @@
 
 void App_Start (void)
 {
-    list Account_DB;
+    create_list (&Transaction_DB);
     create_list (&Account_DB);
-    Read_AccounDB_FromFile (&Account_DB);
+    Read_AccounDB_FromFile ();
 
     ST_cardData_t *cardData = (ST_cardData_t *)malloc(sizeof(ST_cardData_t));
     if (cardData == NULL)
@@ -105,10 +105,10 @@ void App_Start (void)
         return;
     }
 
-    transData->cardHolderData=*cardData;
-    transData->terminalData=*termData;
+    transData->cardHolderData= *cardData;
+    transData->terminalData= *termData;
 
-    Trans_State=recieveTransactionData (transData,&Account_DB);
+    Trans_State=recieveTransactionData (transData);
     if (Trans_State == INTERNAL_SERVER_ERROR)
     {
         printf("Transaction can't be saved\n");
@@ -128,9 +128,13 @@ void App_Start (void)
     else if (Trans_State == APPROVED)
     {
         printf("Transaction Approved\n");
-        Update_AccountDB (&Account_DB);
+
+        EN_serverError_t Server_State = saveTransaction(transData);
+        if (Server_State == SAVING_FAILED)
+            printf("Failed to save transaction data.\n");
     }
 
-
+    listSavedTransactions();
 
 }
+

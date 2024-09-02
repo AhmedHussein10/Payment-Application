@@ -34,7 +34,7 @@ int insert_Account (int pos,void *Account,list *pl)
     node *pn=(node*) malloc(sizeof(node));
     if (pn==NULL)
         return -1;
-    pn->ptr=(ST_accountsDB_t*)Account;
+    pn->ptr=Account;
     if (pos==0)
     {
         pn->next=pl->head;
