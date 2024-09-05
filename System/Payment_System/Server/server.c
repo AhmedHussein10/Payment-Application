@@ -3,6 +3,7 @@
 #include "../../Data_Bases/File_Handling/file_handling.h"
 #include "../../Data_Structures/List/list.h"
 #include "server.h"
+#define MAX_AMOUNT 1000
 
 EN_transState_t recieveTransactionData(ST_transaction_t *transData)
 {
@@ -11,19 +12,59 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
 
     ST_accountsDB_t *PtrAccount=NULL;
 
-    node *pn=Account_DB.head;
+    EN_cardError_t Card_State;
+    EN_terminalError_t Term_State;
 
-    while (pn)
+    Card_State = getCardHolderName (&transData->cardHolderData);
+    while (Card_State != CARD_OK)
     {
-        if (strcmp(transData->cardHolderData.primaryAccountNumber,((ST_accountsDB_t*)pn->ptr)->primaryAccountNumber) == 0)
-        {
-            PtrAccount=pn->ptr;
-            break;
-        }
-        pn=pn->next;
+        printf ("Wrong name, ");
+        printf("Please try again.\n");
+        Card_State = getCardHolderName(&transData->cardHolderData);
     }
 
-    if(isValidAccount(&transData->cardHolderData,PtrAccount) == ACCOUNT_NOT_FOUND)
+    Card_State = getCardPAN (&transData->cardHolderData);
+    while (Card_State != CARD_OK)
+    {
+        printf ("Wrong PAN, ");
+        printf("Please try again.\n");
+        Card_State = getCardPAN(&transData->cardHolderData);
+    }
+
+    Card_State = getCardExpiryDate (&transData->cardHolderData);
+    while (Card_State != CARD_OK)
+    {
+        printf ("Wrong date, ");
+        printf("Please try again.\n");
+        Card_State = getCardExpiryDate(&transData->cardHolderData);
+    }
+
+    Term_State = getTransactionDate(&transData->terminalData);
+    while (Term_State != TERMINAL_OK)
+    {
+        printf(" Wrong date, ");
+        printf("Please try again.\n");
+        Term_State = getTransactionDate(&transData->terminalData);
+    }
+
+    Term_State = setMaxAmount(&transData->terminalData,MAX_AMOUNT);
+    while (Term_State != TERMINAL_OK)
+    {
+        printf("Invalid amount, ");
+        printf("Please try again.\n");
+        Term_State = setMaxAmount(&transData->terminalData,MAX_AMOUNT);
+    }
+
+    Term_State = getTransactionAmount(&transData->terminalData);
+    while (Term_State != TERMINAL_OK)
+    {
+        printf("INVALID amount, ");
+        printf("Please try again.\n");
+        Term_State = getTransactionAmount(&transData->terminalData);
+    }
+
+
+    if(isValidAccount(&transData->cardHolderData,&PtrAccount) == ACCOUNT_NOT_FOUND)
     {
         transData->transState = FRAUD_CARD;
         return FRAUD_CARD;
@@ -42,11 +83,12 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
     }
 
     PtrAccount->balance -= transData->terminalData.transAmount;
+
     Update_AccountDB ();
     return APPROVED;
 }
 
-EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accountRefrence)
+EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t **accountRefrence)
 {
     if (cardData == NULL)
         return ACCOUNT_NOT_FOUND;
@@ -55,22 +97,21 @@ EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accoun
 
     while (pn)
     {
-        if (strcmp(cardData->primaryAccountNumber,((ST_accountsDB_t*)pn->ptr)->primaryAccountNumber) == 0)
+        if (strcmp( (char *)cardData->primaryAccountNumber, (char *)((ST_accountsDB_t*)pn->ptr)->primaryAccountNumber) == 0)
         {
-            accountRefrence=pn->ptr;
+            *accountRefrence=pn->ptr;
             break;
         }
         pn=pn->next;
     }
 
-    if (accountRefrence==NULL)
+    if (*accountRefrence==NULL)
         return ACCOUNT_NOT_FOUND;
     return SERVER_OK;
 }
 
 EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence)
 {
-
     if (accountRefrence == NULL)
         return ACCOUNT_NOT_FOUND;
     if (accountRefrence->state==BLOCKED)
@@ -120,7 +161,7 @@ void listSavedTransactions(void)
         else if (PtrAccount->transState == INTERNAL_SERVER_ERROR)         strcpy (state,"INTERNAL_SERVER_ERROR");
         else                                                              strcpy (state,"ERROR");
 
-        printf("###########################\n");
+        printf("\n#####################################\n");
         printf("Transaction Sequence Number: %d\n" ,PtrAccount->transactionSequenceNumber );
         printf("Transaction Date: %s\n"            ,PtrAccount->terminalData.transactionDate);
         printf("Transaction Amount: %.2f\n"        ,PtrAccount->terminalData.transAmount);
@@ -129,7 +170,7 @@ void listSavedTransactions(void)
         printf("Cardholder Name: %s\n"             ,PtrAccount->cardHolderData.cardHolderName);
         printf("PAN: %s\n"                         ,PtrAccount->cardHolderData.primaryAccountNumber);
         printf("Card Expiration Date: %s\n"        ,PtrAccount->cardHolderData.cardExpirationDate);
-        printf("###########################\n");
+        printf("#####################################\n");
 
         pn=pn->next;
     }
