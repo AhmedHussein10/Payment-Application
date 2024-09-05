@@ -1,9 +1,6 @@
 # depslib dependency file v1.0
-1725494709 source:c:\users\ahmed\desktop\payment_application\main.c
+1725496242 source:c:\users\ahmed\desktop\payment_application\main.c
 	"System/Libraries/standard_libraries.h"
-	"System/Payment_System/Server/server.h"
-	"System/Data_Structures/List/list.h"
-	"System/Data_Bases/File_Handling/file_handling.h"
 	"System/Application/application.h"
 
 1724418237 c:\users\ahmed\desktop\payment_application\system\libraries\standard_libraries.h
@@ -37,7 +34,7 @@
 	"../../Data_Structures/List/list.h"
 	"../../Payment_System/Server/server.h"
 
-1725494972 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
+1725496297 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
 	"../../Libraries/standard_libraries.h"
 	"../../Libraries/platform_type.h"
 	"../../Data_Bases/File_Handling/file_handling.h"

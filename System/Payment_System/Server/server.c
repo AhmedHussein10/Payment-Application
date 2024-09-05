@@ -3,6 +3,7 @@
 #include "../../Data_Bases/File_Handling/file_handling.h"
 #include "../../Data_Structures/List/list.h"
 #include "server.h"
+
 #define MAX_AMOUNT 1000
 
 EN_transState_t recieveTransactionData(ST_transaction_t *transData)
