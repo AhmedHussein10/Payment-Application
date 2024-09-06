@@ -9,8 +9,6 @@
 
 void App_Start (void)
 {
-    create_list (&Transaction_DB);
-    create_list (&Account_DB);
 
     Read_AccounDB_FromFile ();
 
@@ -25,23 +23,7 @@ void App_Start (void)
 
     Trans_State=recieveTransactionData (transData);
 
-    if (isCardExpired(&transData->cardHolderData, &transData->terminalData) != TERMINAL_OK)
-    {
-        printf("\nCard is expired\n");
-        return;
-    }
 
-    if (isValidCardPAN (&transData->cardHolderData) != TERMINAL_OK)
-    {
-        printf("\nInvalid PAN\n");
-        return;
-    }
-
-    if (isBelowMaxAmount(&transData->terminalData) != TERMINAL_OK)
-    {
-        printf("\nAmount Exceeds maximum allowed\n");
-        return;
-    }
 
     if (Trans_State == INTERNAL_SERVER_ERROR)
     {
@@ -62,8 +44,6 @@ void App_Start (void)
     else if (Trans_State == APPROVED)
     {
         printf("\nTransaction Approved\n");
-
-
     }
 
     EN_serverError_t Server_State = saveTransaction(transData);
@@ -71,7 +51,8 @@ void App_Start (void)
     if (Server_State == SAVING_FAILED)
         printf("\nFailed to save transaction data.\n");
 
-    listSavedTransactions();
+
+    free (transData);
 
 }
 

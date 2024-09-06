@@ -59,10 +59,32 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
     Term_State = getTransactionAmount(&transData->terminalData);
     while (Term_State != TERMINAL_OK)
     {
-        printf("INVALID amount, ");
+        printf("Invalid amount, ");
         printf("Please try again.\n");
         Term_State = getTransactionAmount(&transData->terminalData);
     }
+
+    if (isCardExpired(&transData->cardHolderData, &transData->terminalData) != TERMINAL_OK)
+    {
+        printf("\nCard is expired\n");
+        transData->transState = INTERNAL_SERVER_ERROR;
+        return INTERNAL_SERVER_ERROR;
+    }
+
+    if (isValidCardPAN (&transData->cardHolderData) != TERMINAL_OK)
+    {
+        printf("\nInvalid PAN\n");
+        transData->transState = INTERNAL_SERVER_ERROR;
+        return INTERNAL_SERVER_ERROR;
+    }
+
+    if (isBelowMaxAmount(&transData->terminalData) != TERMINAL_OK)
+    {
+        printf("\nAmount Exceeds maximum allowed\n");
+        transData->transState = INTERNAL_SERVER_ERROR;
+        return INTERNAL_SERVER_ERROR;
+    }
+
 
 
     if(isValidAccount(&transData->cardHolderData,&PtrAccount) == ACCOUNT_NOT_FOUND)
@@ -86,6 +108,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
     PtrAccount->balance -= transData->terminalData.transAmount;
 
     Update_AccountDB ();
+    transData->transState = APPROVED;
     return APPROVED;
 }
 
@@ -136,7 +159,6 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData)
         return SAVING_FAILED;
 
     int32_t count=Read_TransactionDB_FromFile ();
-
     insert_Account (count,transData,&Transaction_DB);
 
     if (Write_TransactionDB_ToFile () != 1)
@@ -150,6 +172,8 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData)
 void listSavedTransactions(void)
 {
     node *pn = Transaction_DB.head;
+    if (pn==NULL)
+        printf ("\nThere are no transactions \n");
     char state[30];
     while (pn)
     {

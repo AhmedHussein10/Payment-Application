@@ -1,4 +1,5 @@
 #include "../../Libraries/standard_libraries.h"
+#include "../../Libraries/platform_type.h"
 #include "card.h"
 
 

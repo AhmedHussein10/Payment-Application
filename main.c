@@ -1,29 +1,46 @@
 #include "System/Libraries/standard_libraries.h"
 #include "System/Application/application.h"
+#include "System/Data_Bases/File_Handling/file_handling.h"
+#include "System/Data_Structures/List/list.h"
+#include "System/Payment_System/Server/server.h"
+
 
 
 int main()
 {
 
+
     int userChoice=1;
 
     while (userChoice)
     {
-        App_Start();
+        create_list (&Transaction_DB);
+        create_list (&Account_DB);
 
         do {
-                printf("\t\t\t _________________________________\n");
-                printf("\t\t\t|                                 |\n");
-                printf("\t\t\t|     1. Do another transaction   |\n");
-                printf("\t\t\t|                                 |\n");
-                printf("\t\t\t|     0. Exit                     |\n");
-                printf("\t\t\t|_________________________________|\n");
+                printf("\n------- PAYMENT APPLICATION --------\n");
+                printf(" __________________________________\n");
+                printf("|                                  |\n");
+                printf("|     1. Do a transaction          |\n");
+                printf("|                                  |\n");
+                printf("|     2. Display transactions list |\n");
+                printf("|                                  |\n");
+                printf("|     0. Exit                      |\n");
+                printf("|__________________________________|\n");
                 printf("\nPlease select your choice : ");
                 scanf(" %d", &userChoice);
                 fflush(stdin);
                 if (userChoice == 1)
                 {
                     userChoice = 1;
+                    App_Start();
+                    break;
+                }
+                else if (userChoice == 2)
+                {
+                    userChoice = 2;
+                    Read_TransactionDB_FromFile ();
+                    listSavedTransactions ();
                     break;
                 }
                 else if (userChoice == 0)
@@ -37,8 +54,12 @@ int main()
                 }
             }
 
-         while (1);
+        while (1);
+
+        clear_list (&Account_DB);
+        clear_list (&Transaction_DB);
     }
+
 
     /*getCardHolderNameTest();
     getCardExpiryDateTest();

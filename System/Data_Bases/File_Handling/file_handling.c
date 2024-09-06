@@ -154,7 +154,7 @@ int Write_TransactionDB_ToFile()
     while (pn)
     {
         ST_transaction_t *PtrAccount = (ST_transaction_t *)pn->ptr;
-        PtrAccount->transactionSequenceNumber=count++;
+        PtrAccount->transactionSequenceNumber= ++count;
 
         if      (PtrAccount->transState == APPROVED)                      strcpy (state,"APPROVED");
         else if (PtrAccount->transState == DECLINED_INSUFFECIENT_FUND)    strcpy (state,"DECLINED_INSUFFECIENT_FUND");

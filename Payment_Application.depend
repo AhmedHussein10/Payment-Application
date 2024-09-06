@@ -1,7 +1,10 @@
 # depslib dependency file v1.0
-1725496242 source:c:\users\ahmed\desktop\payment_application\main.c
+1725581857 source:c:\users\ahmed\desktop\payment_application\main.c
 	"System/Libraries/standard_libraries.h"
 	"System/Application/application.h"
+	"System/Data_Bases/File_Handling/file_handling.h"
+	"System/Data_Structures/List/list.h"
+	"System/Payment_System/Server/server.h"
 
 1724418237 c:\users\ahmed\desktop\payment_application\system\libraries\standard_libraries.h
 	<stdio.h>
@@ -11,7 +14,7 @@
 	<time.h>
 	<ctype.h>
 
-1725495211 source:c:\users\ahmed\desktop\payment_application\system\application\application.c
+1725581862 source:c:\users\ahmed\desktop\payment_application\system\application\application.c
 	"../Libraries/standard_libraries.h"
 	"../Libraries/platform_type.h"
 	"application.h"
@@ -23,7 +26,7 @@
 
 1724670820 c:\users\ahmed\desktop\payment_application\system\application\application.h
 
-1725292495 source:c:\users\ahmed\desktop\payment_application\system\data_bases\file_handling\file_handling.c
+1725577482 source:c:\users\ahmed\desktop\payment_application\system\data_bases\file_handling\file_handling.c
 	"../../Libraries/standard_libraries.h"
 	"file_handling.h"
 	"../../Payment_System/Server/server.h"
@@ -34,7 +37,7 @@
 	"../../Data_Structures/List/list.h"
 	"../../Payment_System/Server/server.h"
 
-1725496297 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
+1725582491 source:c:\users\ahmed\desktop\payment_application\system\payment_system\server\server.c
 	"../../Libraries/standard_libraries.h"
 	"../../Libraries/platform_type.h"
 	"../../Data_Bases/File_Handling/file_handling.h"
@@ -80,8 +83,9 @@
 	"../../Libraries/platform_type.h"
 	"../Card/card.h"
 
-1724672943 source:c:\users\ahmed\desktop\payment_application\system\payment_system\card\card.c
+1725548432 source:c:\users\ahmed\desktop\payment_application\system\payment_system\card\card.c
 	"../../Libraries/standard_libraries.h"
+	"../../Libraries/platform_type.h"
 	"card.h"
 
 1724672957 source:c:\users\ahmed\desktop\payment_application\system\payment_system\terminal\terminal.c
