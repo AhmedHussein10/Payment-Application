@@ -23,11 +23,11 @@ void App_Start (void)
 
     Trans_State=recieveTransactionData (transData);
 
-
+    system("cls");
 
     if (Trans_State == INTERNAL_SERVER_ERROR)
     {
-        printf("\nTransaction can't be saved\n");
+        printf("\nIncomplete transaction\n");
     }
     else if (Trans_State == FRAUD_CARD)
     {

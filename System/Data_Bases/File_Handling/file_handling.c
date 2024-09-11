@@ -13,7 +13,7 @@ void Read_AccounDB_FromFile()
         return;
     }
 
-    int32_t i=0;
+    int32_t count=0;
     char state[8];
 
     while (!feof(file))
@@ -43,8 +43,8 @@ void Read_AccounDB_FromFile()
             continue;
         }
 
-        insert_Account(i, account, &Account_DB);
-        i++;
+        insert_Account(count, account, &Account_DB);
+        count++;
     }
 
     fclose(file);

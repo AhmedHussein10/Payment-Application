@@ -4,9 +4,6 @@
 #include "../../Libraries/standard_libraries.h"
 #include "../../Libraries/platform_type.h"
 
-
-
-
 typedef struct node
 {
     void *ptr;

@@ -1,14 +1,12 @@
 #include "System/Libraries/standard_libraries.h"
 #include "System/Application/application.h"
-#include "System/Data_Bases/File_Handling/file_handling.h"
 #include "System/Data_Structures/List/list.h"
+#include "System/Data_Bases/File_Handling/file_handling.h"
 #include "System/Payment_System/Server/server.h"
-
 
 
 int main()
 {
-
 
     int userChoice=1;
 
@@ -30,6 +28,7 @@ int main()
                 printf("\nPlease select your choice : ");
                 scanf(" %d", &userChoice);
                 fflush(stdin);
+                system("cls");
                 if (userChoice == 1)
                 {
                     userChoice = 1;
@@ -40,6 +39,7 @@ int main()
                 {
                     userChoice = 2;
                     Read_TransactionDB_FromFile ();
+                    system("cls");
                     listSavedTransactions ();
                     break;
                 }
@@ -55,11 +55,10 @@ int main()
             }
 
         while (1);
-
-        clear_list (&Account_DB);
-        clear_list (&Transaction_DB);
     }
 
+    clear_list (&Account_DB);
+    clear_list (&Transaction_DB);
 
     /*getCardHolderNameTest();
     getCardExpiryDateTest();
